@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    
+  <title>UT Zappos50K</title>
+  
+  <meta charset="utf-8">
+  <meta name="author" content="Aron Yu">
+  
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+  <link href="styles/reset.css" rel="stylesheet" type="text/css" media="screen" />
+  <link href="styles/utzap50k.css" rel="stylesheet" type="text/css" media="screen" />
+  <link href="styles/lightbox.css" rel="stylesheet" type="text/css" media="screen" />
+  
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="styles/lightbox.min.js"></script>
+  
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-50110471-2', 'utexas.edu');
+    ga('require', 'displayfeatures');
+    ga('send', 'pageview');
+
+  </script>
+  
+  <script>
+    $(document).ready(function(){
+      $(".fakelink").click(function(){
+        $(".bibref").slideToggle(600);
+      });
+    });
+  </script>
+  
+</head>
+
+<body>
+  
+  <table class="header">
+    <tr>
+      <td><img src="images/ut_logo1.png" alt="UT Logo" /></td>
+      <td><h1>UT Zappos50K</h1></td>
+      <td><img src="images/ut_logo1.png" alt="UT Logo" /></td>
+    </tr>
+  </table>
+  <hr class="mainhr">
+  
+  <table class="toprow">
+    <tr>
+      <td>Shoes</td>
+      <td>Sandals</td>
+      <td>Slippers</td>
+      <td>Boots</td>
+    </tr>
+    <tr>
+      <td><a href="images/shoes_zoom.jpg" data-lightbox="category" data-title="Shoes"><img src="images/shoes_thumb.jpg" alt="Shoes" /></a></td>
+      <td><a href="images/sandals_zoom.jpg" data-lightbox="category" data-title="Sandals"><img src="images/sandals_thumb.jpg" alt="Sandals" /></a></td>
+      <td><a href="images/slippers_zoom.jpg" data-lightbox="category" data-title="Slippers"><img src="images/slippers_thumb.jpg" alt="Slippers" /></a></td>
+      <td><a href="images/boots_zoom.jpg" data-lightbox="category" data-title="Boots"><img src="images/boots_thumb.jpg" alt="Boots" /></a></td>
+    </tr>
+  </table>
+  
+  <section>
+    
+    <header>Overview</header>
+    <hr class="midhr">
+    
+    <p>UT Zappos50K (<b>UT-Zap50K</b>) is a large shoe dataset consisting of <b>50,025</b> catalog images collected from <a href="http://www.zappos.com" target="_blank">Zappos.com</a>. The images are divided into 4 major categories &mdash; shoes, sandals, slippers, and boots &mdash; followed by functional types and individual brands. The shoes are centered on a white background and pictured in the same orientation for convenient analysis.</p>
+    
+    <p>This dataset is created in the context of an <i>online shopping task</i>, where users pay special attentions to <b>fine-grained visual differences</b>. For instance, it is more likely that a shopper is deciding between two pairs of similar men's running shoes instead of between a woman's high heel and a man's slipper. GIST and LAB color features are provided. In addition, each image has 8 associated meta-data (gender, materials, etc.) labels that are used to filter the shoes on Zappos.com.</p>
+    
+  </section>
+  
+  <section>
+    
+    <header>Tasks</header>
+    <hr class="midhr">
+    
+    <p>We introduced this dataset in the context of a <b>pairwise comparison task</b>, where the goal is to predict which of two images more strongly exhibits a visual attribute. When given a novel image pair, we want to answer the question, <i>&ldquo;Does Image A contain more or less of an attribute than Image B?&rdquo;</i> Both training and evaluation are performed using pairwise labels.</p>
+    
+    <p>However, the usefulness of this dataset extends beyond the comparison task that we&rsquo;ve demonstrated. The meta-data labels and the large size of the dataset makes it suitable for other tasks as well, such as:</p>
+    
+    <ul class="tasks">
+      <li>category/brand classification</li>
+      <li>fine-grained attribute learning with rationales</li>
+      <li>gender-specific style matching</li>
+      <li>zero-shot learning</li>
+    </ul>
+    
+  </section>
+  
+  <section>
+    
+    <header>Annotations</header>
+    <hr class="midhr">
+    
+    <p>Using <a href="https://www.mturk.com/mturk/welcome" target="_blank">Mechanical Turk</a>, we collected comparison labels for <b>4 relative attributes</b>: <i>open</i>, <i>pointy</i>, <i>sporty</i>, and <i>comfort</i>. We sampled 3,000 pairs of images out of the possible 50K&sup2; pairs with strong bias towards intra-category and intra-gender images. We asked 5 workers to evaluate each pair for each attribute (<a href="mturk.html">more details</a>). After pruning out pairs with low confidence or agreement, the human-annotated examples consist of <b>6,751 ordered pairs</b> and <b>4,612 &ldquo;equal&rdquo; pairs</b>. This is referred to as <b>UT-Zap50K-1</b>.</p>
+    
+    <p>While the &ldquo;equal&rdquo; label can indicate that there&rsquo;s no detectable difference in the attribute, we also suspected that it was an easy fallback response for cases that required a little more thought &mdash; that is, those showing fine-grained differences. Thus, we gave these &ldquo;equal&rdquo; pairs to a new set of workers, but without the &ldquo;equal&rdquo; option this time. We asked the workers to pick <i>carefully</i> and give a one sentence rationale. After pruning, there are <b>4,334 fine-grained pairs</b>. This is referred to as <b>UT-Zap50K-2</b>.</p>
+    
+    <p>Sample labels from both sets are shown below. <i>66%</i> of Zap50K-1 and <i>63%</i> of Zap50K-2 had at least 4 out of 5 workers agree on the same label with high confidence, ensuring consistency and reliability.</p>
+    
+    <table class="pairs">
+    <tr>
+      <td class="pairs_top"></td>
+      <td class="pairs_top">Open</td>
+      <td class="pairs_top">Pointy</td>
+      <td class="pairs_top">Sporty</td>
+      <td class="pairs_top">Comfort</td>
+    </tr>
+    <tr>
+      <td class="pairs_side">Ordered<br>Pairs</td>
+      <td><a href="images/order_open.png" data-lightbox="pairs" data-title="Open Ordered"><img src="images/order_open.jpg" alt="Order Open" /></a></td>
+      <td><a href="images/order_pointy.png" data-lightbox="pairs" data-title="Pointy Ordered"><img src="images/order_pointy.jpg" alt="Order Pointy" /></a></td>
+      <td><a href="images/order_sporty.png" data-lightbox="pairs" data-title="Sporty Ordered"><img src="images/order_sporty.jpg" alt="Order Sporty" /></a></td>
+      <td><a href="images/order_comfort.png" data-lightbox="pairs" data-title="Comfort Ordered"><img src="images/order_comfort.jpg" alt="Order Comfort" /></a></td>
+    </tr>
+    <tr>
+      <td class="pairs_side">Fine-Grained<br>Pairs</td>
+      <td><a href="images/hard_open.png" data-lightbox="pairs" data-title="Open Fine-Grained"><img src="images/hard_open.jpg" alt="Hard Open" /></a></td>
+      <td><a href="images/hard_pointy.png" data-lightbox="pairs" data-title="Pointy Fine-Grained"><img src="images/hard_pointy.jpg" alt="Hard Pointy" /></a></td>
+      <td><a href="images/hard_sporty.png" data-lightbox="pairs" data-title="Sporty Fine-Grained"><img src="images/hard_sporty.jpg" alt="Hard Sporty" /></a></td>
+      <td><a href="images/hard_comfort.png" data-lightbox="pairs" data-title="Comfort Fine-Grained"><img src="images/hard_comfort.jpg" alt="Hard Comfort" /></a></td>
+    </tr>
+    </table>
+    
+  </section>
+  
+  <!-- additional section for rationales -->
+  <!-- even though we designed the rationale as speed bump, it can be useful in analysis too -->
+  
+  <section>
+    
+    <header>Benchmarks</header>
+    <hr class="midhr">
+    
+    <p>We provide the train-test splits used in our paper for benchmark purposes. We also provide a demo script to help with experimental setup for <b>relative attribute prediction</b>. The ROC curves of the current benchmarks for UT-Zap50K-1 are shown below. Numbers in the legends denote mean ranking accuracies (see <a onclick="ga('send', 'event', 'link', 'download', 'paper-main');" href="http://vision.eeninja.com/papers/cvpr14/aron-cvpr14.pdf" target="_blank">paper</a> for details).</p>
+    
+    <table class="roc">
+      <tr>
+        <td><a href="images/zaproc_attr1_zoom.png" data-lightbox="roc" data-title="Open ROC"><img src="images/zaproc_attr1.png" alt="Shoes" /></a></td>
+        <td><a href="images/zaproc_attr2_zoom.png" data-lightbox="roc" data-title="Pointy ROC"><img src="images/zaproc_attr2.png" alt="Sandals" /></a></td>
+        <td><a href="images/zaproc_attr3_zoom.png" data-lightbox="roc" data-title="Sporty ROC"><img src="images/zaproc_attr3.png" alt="Slippers" /></a></td>
+        <td><a href="images/zaproc_attr4_zoom.png" data-lightbox="roc" data-title="Comfort ROC"><img src="images/zaproc_attr4.png" alt="Boots" /></a></td>
+      </tr>
+    </table>
+    
+  </section>
+  
+  <section>
+    
+    <header>Citation</header>
+    <hr class="midhr">
+    
+    <p>This dataset is for academic, non-commercial use only. If you use this dataset in a publication, please cite the following paper:</p>
+    
+    <p><span class="citation">A. Yu and K. Grauman. "Fine-Grained Visual Comparisons with Local Learning". In CVPR, 2014.</span><br><span class="dl-list"><a onclick="ga('send', 'event', 'link', 'download', 'paper-main');" href="http://vision.eeninja.com/papers/cvpr14/aron-cvpr14.pdf" target="_blank">[paper]</a>&nbsp;<a onclick="ga('send', 'event', 'link', 'download', 'paper-supp');" href="http://vision.eeninja.com/papers/cvpr14/aron-cvpr14-supp.pdf" target="_blank">[supp]</a>&nbsp;<a class="fakelink">[bibtex]</a>&nbsp;<a class="disable" onclick="ga('send', 'event', 'link', 'redirect', 'paper-home');" href="http://vision.cs.utexas.edu/projects/finegrained" target="_blank">[project page]</a></span></p>
+    
+    <p class="bibref">@InProceedings{fine-grained,<br>&nbsp;&nbsp;author = {A. Yu and K. Grauman},<br>&nbsp;&nbsp;title = {{F}ine-{G}rained {V}isual {C}omparisons with {L}ocal {L}earning},<br>&nbsp;&nbsp;booktitle = {Computer Vision and Pattern Recognition (CVPR)},<br>&nbsp;&nbsp;month = {June},<br>&nbsp;&nbsp;year = {2014}<br>}</p>
+    
+  </section>
+  
+  <section>
+    
+    <header>Downloads</header>
+    <hr class="midhr">
+    
+    <p>Please consider providing your <b>email address</b> to be notified of any major changes to the dataset (updates, bug fixes, etc.):</p>
+    
+    <form name="subscribe" method="post" action="forms/subscribe.php">
+      <input class="email" name="email" type="text" placeholder="Email Address" required>
+      <input class="submit" name="submit" type="submit" value="Subscribe">
+    </form>
+    
+    <p>You can download the dataset using the links below:</p>
+    
+    <ul class="download">
+      <li><a onclick="ga('send', 'event', 'link', 'download', 'readme');" href="readme.txt" target="_blank">readme.txt</a>&nbsp;<span class="shrink">(6 KB)</span></li>
+      <li><a onclick="ga('send', 'event', 'link', 'download', 'zip-data');" href="ut-zap50k-data.zip" target="_blank">ut-zap50k-data.zip</a>&nbsp;<span class="shrink">(3 MB)</span></li>
+      <li><a onclick="ga('send', 'event', 'link', 'download', 'zip-feats');" href="ut-zap50k-feats.zip" target="_blank">ut-zap50k-feats.zip</a>&nbsp;<span class="shrink">(208 MB)</span></li>
+      <li><a onclick="ga('send', 'event', 'link', 'download', 'zip-images');" href="ut-zap50k-images.zip" target="_blank">ut-zap50k-images.zip</a>&nbsp;<span class="shrink">(291 MB)&nbsp;<i>*academic use only*</i></span></li>
+    </ul>
+    
+    <p class="vertop"><i class="version">Version 1.0 (Apr 18th, 2014): Private release of the UT-Zap50K dataset webpage.</i></p>
+    
+    <p><i class="version">Version 1.1 (Apr 26th, 2014): Benchmark splits and demo script added.</i></p>
+    
+  </section>
+  
+  <hr class="mainhr">
+  <footer>&copy; 2014 University of Texas at Austin || Contact <a onclick="ga('send', 'event', 'link', 'redirect', 'personal-home');" href="http://owl.eeninja.com" target="_blank">Aron Yu</a> for any questions/problems/bug reports/etc. || Current Version 1.1</footer>
+  
+</body>
+
+</html>
